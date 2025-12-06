@@ -4,7 +4,7 @@ murl="https://go.dev/dl/"
 
 version=$(curl -s https://go.dev/dl/ | grep -oP '(go[0-9]+\.[0-9]+(\.[0-9]+)?)\.src\.tar\.gz' | sed 's/\.src\.tar\.gz//' | uniq | head -n 1)
 
-if [ "$(dpkg --print-architecture)" = "aarch64" ]; then
+if [ "$(dpkg --print-architecture)" = "arm64" ]; then
   ark="linux-arm64"
 elif [ "$(dpkg --print-architecture)" = "amd64" ]; then
   ark="linux-amd64"
