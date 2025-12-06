@@ -1,0 +1,20 @@
+#!/bin/bash
+apt update 
+apt upgrade -y
+apt install build-essential wget libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev libgdbm-dev libdb-dev curl -y
+base="https://www.python.org/ftp/python"
+version=$(curl -s $base/ | grep -oP '\d\.\d+\.\d+(?=/)' | sort -u -Vr | sed -n '2p')
+
+echo $version
+curl -OJL $base/$version/Python-$version.tar.xz
+
+tar -xvf Python*.tar.xz
+cd Python*/
+./configure --enable-optimizations
+make -j$(nproc)
+make install
+
+echo "alias python='/usr/local/bin/python3.14'" >> ~/.bashrc
+source ~/.bashrc
+/usr/local/bin/python3.14 -m pip --version
+python3 --version
