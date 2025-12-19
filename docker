@@ -31,7 +31,7 @@ Dwnld(){
 names=$(echo "$content" | grep -oP '(?<=href=")[^"]*'"$1"'[^"]*\.deb' | sort -V | tail -n 1)
 curl -OJL "$url"/"$names"
 clors 90 107 "Instalando: $names"
-base $names
+base "$names"
 dpkg -i "$names"
 rm -rf "$names"
 }
