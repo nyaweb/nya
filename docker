@@ -1,6 +1,6 @@
 #!/bin/bash
 
-check(){ dpkg -l "$1" 2>/dev/null | grep -q '^ii' && echo $1" Esta instalado" || apt install $1 -y }
+check(){ dpkg -l "$1" 2>/dev/null | grep -q '^ii' && echo $1" Esta instalado" || apt install $1 -y; }
 
 check iptables
 check curl
