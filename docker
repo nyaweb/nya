@@ -1,0 +1,55 @@
+#!/bin/bash
+
+check(){ dpkg -l "$1" 2>/dev/null | grep -q '^ii' && echo $1" Esta instalado" || apt install $1 -y }
+
+check iptables
+check curl
+check dbus-user-session
+
+clors(){ echo -e "\e[1;${1};${2}m${3}\e[0m" }
+base(){ clors 96 100 $1 }
+
+sabor=$(grep 'VERSION_CODENAME' /etc/os-release | cut -d= -f2)
+so=$(grep '^ID=' /etc/os-release | cut -d= -f2)
+
+url="https://download.docker.com/linux/$so/dists/$sabor/pool/stable"
+arch=$(dpkg --print-architecture)
+url="$url"/"$arch"
+
+cnerd="containerd"
+dbp="docker-buildx-plugin"
+dcc="docker-ce-cli"
+dcere="docker-ce-rootless-extras"
+dce="docker-ce"
+dcp="docker-compose-plugin"
+dsp="docker-scan-plugin"
+dmp="docker-model-plugin"
+
+content=$(curl -s "$url"/)
+
+Dwnld(){
+names=$(echo "$content" | grep -oP '(?<=href=")[^"]*'"$1"'[^"]*\.deb' | sort -V | tail -n 1)
+curl -OJL "$url"/"$names"
+clors 90 107 "Instalando: $names"
+base $names
+dpkg -i "$names"
+rm -rf "$names"
+}
+
+mkdir -p nyadocker
+cd nyadocker
+
+Dwnld $cnerd
+Dwnld $dbp
+Dwnld $dcc
+Dwnld $dcere
+Dwnld $dce
+Dwnld $dcp
+Dwnld $dsp
+Dwnld $dmp
+
+cd ..
+rm -rf nyadocker/
+
+apt --fix-broken install
+docker version
