@@ -4,25 +4,25 @@
 
 ## Docker
 ``` bash
-. <(curl -fsSL https://nya.nyaweb.com/docker)
+. <(curl -fsSL https://nyaweb.github.io/nya/docker)
 ```
 
 ## Go
 ``` bash
-. <(curl -fsSL https://nya.nyaweb.com/go)
+. <(curl -fsSL https://nyaweb.github.io/nya/go)
 ```
 
 ## NodeJs
 ``` bash
-. <(curl -fsSL https://nya.nyaweb.com/nodejs)
+. <(curl -fsSL https://nyaweb.github.io/nya/nodejs)
 ```
 
 ## Python
 ``` bash
-. <(curl -fsSL https://nya.nyaweb.com/python)
+. <(curl -fsSL https://nyaweb.github.io/nya/python)
 ```
 
 ## PHP
 ``` bash
-. <(curl -fsSL https://nya.nyaweb.com/php)
+. <(curl -fsSL https://nyaweb.github.io/nya/php)
 ```
