@@ -1,0 +1,20 @@
+#!/bin/sh
+url="https://www.kernel.org/pub/software/scm/git/"
+
+vers=$(curl -s $url | sed -n 's#.*">\(git-[0-9][0-9.]*\.tar\.gz\)</a>.*#\1#p' | sort -V | tail -1 )
+
+curl -OJL $url$vers
+apt install build-essential dh-autoreconf libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-dev -y
+
+tar -xzf git*.tar.gz
+cd git*/
+
+make configure
+./configure --prefix=/usr/local
+make -j"$(nproc)" all
+make install
+
+cd ..
+rm -rf git*.tar.gz
+rm -rf git*/
+git --version

@@ -12,6 +12,11 @@
 . <(curl -fsSL https://nyaweb.github.io/nya/rust)
 ```
 
+## Git
+``` bash
+. <(curl -fsSL https://nyaweb.github.io/nya/git)
+```
+
 ## Bun
 ``` bash
 . <(curl -fsSL https://nyaweb.github.io/nya/bun)
