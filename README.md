@@ -7,6 +7,11 @@
 . <(curl -fsSL https://nyaweb.github.io/nya/docker)
 ```
 
+## Rust
+``` bash
+. <(curl -fsSL https://nyaweb.github.io/nya/rust)
+```
+
 ## Bun
 ``` bash
 . <(curl -fsSL https://nyaweb.github.io/nya/bun)

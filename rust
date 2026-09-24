@@ -1,0 +1,14 @@
+#!/bin/sh
+set -eu
+
+apt update
+apt install curl build-essential ca-certificates -y
+
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs |
+    sh -s -- -y
+
+. "$HOME/.cargo/env"
+
+rustc --version
+cargo --version
+cc --version
