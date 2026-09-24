@@ -1,0 +1,14 @@
+#!/bin/bash
+
+apt update
+apt upgrade -y
+
+apt install unzip curl -y
+curl -fsSL https://bun.com/install | bash
+
+echo 'export PATH="$HOME/.bun/bin:$PATH"' >> "$HOME/.bashrc"
+source "$HOME/.bashrc"
+
+bun -v
+ln -s "$(command -v bun)" /usr/local/bin/node
+node -
